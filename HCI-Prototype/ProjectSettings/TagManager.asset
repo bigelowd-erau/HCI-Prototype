@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - HealthPickup
+  - ArmorPickup
+  - ObjectiveF1
+  - ObjectiveF2
+  - Sector
   layers:
   - Default
   - TransparentFX
