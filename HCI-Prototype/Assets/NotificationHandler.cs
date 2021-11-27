@@ -32,7 +32,7 @@ public class NotificationHandler : MonoBehaviour
         }
 
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         PlayerCollisionHandler.CaptureF1?.RemoveListener(ObjectiveCaptured);
         PlayerCollisionHandler.CaptureF2?.RemoveListener(ObjectiveCaptured);

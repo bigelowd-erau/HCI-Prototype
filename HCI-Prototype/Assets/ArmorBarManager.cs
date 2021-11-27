@@ -15,11 +15,13 @@ public class ArmorBarManager : MonoBehaviour
     {
         TakeHealthDamage = new UnityEvent();
         PlayerCollisionHandler.BulletHit.AddListener(TakeDamage);
+        RespawnManager.Respawn.AddListener(Respawn);
         PlayerCollisionHandler.ArmorPickup.AddListener(AddArmor);
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         PlayerCollisionHandler.BulletHit.RemoveListener(TakeDamage);
+        RespawnManager.Respawn.RemoveListener(Respawn);
         PlayerCollisionHandler.ArmorPickup.RemoveListener(AddArmor);
     }
     private void UpdateArmorBar()
@@ -48,8 +50,9 @@ public class ArmorBarManager : MonoBehaviour
             UpdateArmorBar();
         }
     }
-    private void Die()
+    private void Respawn()
     {
-        //go to deploy menu
+        curArmor = startingArmor;
+        UpdateArmorBar();
     }
 }

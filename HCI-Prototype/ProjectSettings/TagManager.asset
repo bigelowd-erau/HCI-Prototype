@@ -10,6 +10,11 @@ TagManager:
   - ObjectiveF1
   - ObjectiveF2
   - Sector
+  - 1
+  - 2
+  - 3
+  - 4
+  - G
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ public class ObjectiveF1 : MonoBehaviour
         CapturedF1 = new UnityEvent();
         PlayerCollisionHandler.CaptureF1.AddListener(Capture);
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         PlayerCollisionHandler.CaptureF1.RemoveListener(Capture);
     }

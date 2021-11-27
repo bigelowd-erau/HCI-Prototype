@@ -12,7 +12,7 @@ public class ObjectiveF2 : MonoBehaviour
         CapturedF2 = new UnityEvent();
         PlayerCollisionHandler.CaptureF2.AddListener(Capture);
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         PlayerCollisionHandler.CaptureF2.RemoveListener(Capture);
     }

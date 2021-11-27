@@ -1,22 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class HealthBarManager : MonoBehaviour
 {
+    public static UnityEvent Die;
     private int startingHealth = 100;
     private int curHealth = 100;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        Die = new UnityEvent();
+    }
     void Start()
     {
         PlayerCollisionHandler.HealthPickup.AddListener(Heal);
+        RespawnManager.Respawn.AddListener(Respawn);
         ArmorBarManager.TakeHealthDamage.AddListener(TakeDamage);
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         PlayerCollisionHandler.HealthPickup.RemoveListener(Heal);
+        RespawnManager.Respawn.RemoveListener(Respawn);
         ArmorBarManager.TakeHealthDamage.RemoveListener(TakeDamage);
     }
     private void UpdateHealthBar()
@@ -30,7 +38,7 @@ public class HealthBarManager : MonoBehaviour
         Debug.Log("Bullet hit");
         UpdateHealthBar();
         if (curHealth <= 0)
-            Die();
+            Die?.Invoke();
     }
     private void Heal()
     {
@@ -40,8 +48,9 @@ public class HealthBarManager : MonoBehaviour
             UpdateHealthBar();
         }
     }
-    private void Die()
+    private void Respawn()
     {
-        //go to deploy menu
+        curHealth = startingHealth;
+        UpdateHealthBar();
     }
 }
