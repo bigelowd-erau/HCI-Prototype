@@ -12,7 +12,7 @@ public class UIMenuManager : MonoBehaviour
 
     private void Start()
     {
-        HealthBarManager.Die.AddListener(OnDeath);
+        
     }
 
     private void Update()
@@ -39,6 +39,7 @@ public class UIMenuManager : MonoBehaviour
     }
     private void OnDeath()
     {
+        HealthBarManager.Die.RemoveListener(OnDeath);
         DeploymentUI.SetActive(true);
         GunCustUI.SetActive(false);
         GameplayUI.SetActive(false);
@@ -50,6 +51,7 @@ public class UIMenuManager : MonoBehaviour
         DeploymentUI.SetActive(false);
         GameplayUI.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
+        HealthBarManager.Die.AddListener(OnDeath);
     }
     public void ReturnToLobby()
     {
@@ -61,8 +63,7 @@ public class UIMenuManager : MonoBehaviour
         DeploymentUI.SetActive(true);
         LobbyUI.SetActive(false);
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
-        HealthBarManager.Die.RemoveListener(OnDeath);
     }
 }

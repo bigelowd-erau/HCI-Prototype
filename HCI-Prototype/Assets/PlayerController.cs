@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         rb = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
